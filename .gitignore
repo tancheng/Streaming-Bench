@@ -1,4 +1,5 @@
 *.backup
+.out
 .DS_Store
 *.json
 *.bc
