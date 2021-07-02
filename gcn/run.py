@@ -17,7 +17,7 @@ print("num_classes: ", dataset.num_classes)
 print("dataset[0]: ", dataset[0], "; .y: ", dataset[0].y)
 print("dataset[250]: ", dataset[250], "; .y: ", dataset[250].y)
 
-train_num = 550
+train_num = 450
 
 #nodes = 0
 #count = 0
@@ -36,8 +36,8 @@ times = 0
 class Net(torch.nn.Module):
     def __init__(self):
         super(Net, self).__init__()
-        self.conv1 = GCNConv(dataset.num_node_features, 50)
-        self.conv2 = GCNConv(50, dataset.num_classes)
+        self.conv1 = GCNConv(dataset.num_node_features, 35)
+        self.conv2 = GCNConv(35, dataset.num_classes)
 
     def forward(self, data):
         x, edge_index = data.x, data.edge_index
@@ -66,7 +66,6 @@ for epoch in range(2000):
   for graph in train_dataset:
       optimizer.zero_grad()
       out = model(graph)
-      #loss = criterion(out, graph.y)
       loss = F.nll_loss(out, graph.y)
       loss.backward()
       optimizer.step()
@@ -78,4 +77,4 @@ for epoch in range(2000):
     _, pred = model(graph).max(dim=1)
   #  print(graph.y, pred)
     correct += pred.eq(graph.y).sum().item()
-  print("Epoch ", epoch, " Accuracy: ", correct / (len(dataset)-train_num))
+  print("Epoch ", epoch, " Accuracy: {:.3f}".format(correct / (len(dataset)-train_num)))
