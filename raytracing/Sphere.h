@@ -7,7 +7,7 @@
 #include "math.h"
 #include "Object.h"
 #include "Vect.h"
-#include "Colour.h"
+#include "Color.h"
 
 //The Sphere class
 class Sphere : public Object {
@@ -15,21 +15,21 @@ class Sphere : public Object {
 	Vect center;
 	//The radius of the sphere
 	double radius;
-	//The colour of the sphere
-	Colour colour;
+	//The color of the sphere
+	Color color;
 
 	public:
 	//Constructor functions
 	Sphere ();
 
-	Sphere (Vect, double, Colour);
+	Sphere (Vect, double, Color);
 
 	//Method functions
 
 	//Getters
 	Vect getSphereCenter () { return center; }
 	double getSphereRadius () { return radius; }
-	virtual Colour getColour () { return colour; }
+	virtual Color getColor () { return color; }
 
 	//Get the normal at a point
 	virtual Vect getNormalAt(Vect point) {
@@ -89,14 +89,14 @@ class Sphere : public Object {
 Sphere::Sphere () {
 	center = Vect(0,0,0);
 	radius = 1.0;
-	colour = Colour(0.5,0.5,0.5, 0);
+	color = Color(0.5,0.5,0.5, 0);
 }
 
 //Define a sphere 
-Sphere::Sphere (Vect centerValue, double radiusValue, Colour ColourValue) {
+Sphere::Sphere (Vect centerValue, double radiusValue, Color ColorValue) {
 	center = centerValue;
 	radius = radiusValue;
-	colour = ColourValue;
+	color = ColorValue;
 }
 
 #endif

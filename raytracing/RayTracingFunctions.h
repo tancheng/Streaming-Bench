@@ -7,10 +7,14 @@
 #include <stdio.h>
 
 #include <vector>
-#include "Colour.h"
+#include "Color.h"
 #include "Vect.h"
 #include "Object.h"
 #include "Source.h"
+
+#define DimX 0
+#define DimY 1
+#define DimZ 2
 
 //Function to return the winning index of all intersections
 //The winning index is the index of the object that intersects with the ray first and is rendered ahead of others
@@ -65,39 +69,39 @@ int winningObjectIndex(std::vector<double> object_intersections) {
 
 /******************************************************************************/
 
-//Function to get the colour at an intersection
+//Function to get the color at an intersection
 //Accounts for specular, reflection, diffusal and special values like checkered or translucent
-Colour getColourAt(Vect intersection_position, Vect intersecting_ray_direction, std::vector<Object*> scene_objects, int index_of_winning_object, std::vector<Source*> light_sources, double accuracy, double ambientlight) {
+Color getColorAt(Vect intersection_position, Vect intersecting_ray_direction, std::vector<Object*> scene_objects, int index_of_winning_object, std::vector<Source*> light_sources, double accuracy, double ambientlight) {
 
-	Colour winning_object_Colour = scene_objects.at(index_of_winning_object)->getColour();
+	Color winning_object_Color = scene_objects.at(index_of_winning_object)->getColor();
 	Vect winning_object_normal = scene_objects.at(index_of_winning_object)->getNormalAt(intersection_position);
 
 	//Checkered/tile floor pattern if object has special of 4
-	if (winning_object_Colour.getColourSpecial() == 4) {
+	if (winning_object_Color.getColorSpecial() == 4) {
 
 		int square = (int)floor(intersection_position.getVectX()) + (int)floor(intersection_position.getVectZ());
 
 		if ((square % 2) == 0) {
 			//Black tile
-			winning_object_Colour.setColourRed(0);
-			winning_object_Colour.setColourGreen(0);
-			winning_object_Colour.setColourBlue(0);
+			winning_object_Color.setColorRed(0);
+			winning_object_Color.setColorGreen(0);
+			winning_object_Color.setColorBlue(0);
 		}
 		else {
 			//White tile
-			winning_object_Colour.setColourRed(1);
-			winning_object_Colour.setColourGreen(1);
-			winning_object_Colour.setColourRed(1);
+			winning_object_Color.setColorRed(1);
+			winning_object_Color.setColorGreen(1);
+			winning_object_Color.setColorRed(1);
 		}
 	}
 
-	//The final Colour of the object
-	Colour final_Colour = winning_object_Colour.ColourScalar(ambientlight);
+	//The final Color of the object
+	Color final_Color = winning_object_Color.ColorScalar(ambientlight);
 
     //The Object is translucent with a coefficient ranging from 0.1 to 0.9 subtract 2 from the special value
-    if (winning_object_Colour.getColourSpecial() > 2 && winning_object_Colour.getColourSpecial() < 3){
+    if (winning_object_Color.getColorSpecial() > 2 && winning_object_Color.getColorSpecial() < 3){
         //Calculate the refraction coefficient
-        double n = winning_object_Colour.getColourSpecial() - 2;
+        double n = winning_object_Color.getColorSpecial() - 2;
 
         //Calculate the direction of the Refracrtion ray
         double c1 = winning_object_normal.dotProduct(intersecting_ray_direction.negative());
@@ -167,11 +171,11 @@ Colour getColourAt(Vect intersection_position, Vect intersecting_ray_direction, 
                 Vect refraction_intersection_position = intersection2.vectAdd(refraction_direction2.vectMult(refraction_intersections2.at(index_of_winning_object_with_refraction2)));
                 Vect refraction_intersection_ray_direction = refraction_direction2;
 
-				//Get the colour at the area of the object intersected
-                Colour refraction_intersection_Colour = getColourAt(refraction_intersection_position, refraction_intersection_ray_direction, scene_objects, index_of_winning_object_with_refraction2, light_sources, accuracy, ambientlight);
+				//Get the color at the area of the object intersected
+                Color refraction_intersection_Color = getColorAt(refraction_intersection_position, refraction_intersection_ray_direction, scene_objects, index_of_winning_object_with_refraction2, light_sources, accuracy, ambientlight);
 
-				//Return the final colour to the original point
-                final_Colour = final_Colour.ColourAdd(refraction_intersection_Colour.ColourScalar(n));
+				//Return the final color to the original point
+                final_Color = final_Color.ColorAdd(refraction_intersection_Color.ColorScalar(n));
 
             }
 
@@ -182,7 +186,7 @@ Colour getColourAt(Vect intersection_position, Vect intersecting_ray_direction, 
     }
 
 	//If the object has special from 0-1 thenn that is its level of shininess
-	if (winning_object_Colour.getColourSpecial() > 0 && winning_object_Colour.getColourSpecial() <= 2) {
+	if (winning_object_Color.getColorSpecial() > 0 && winning_object_Color.getColorSpecial() <= 2) {
 
 		//Reflection from objects with specular intensity
 
@@ -218,9 +222,9 @@ Colour getColourAt(Vect intersection_position, Vect intersecting_ray_direction, 
 				Vect reflection_intersection_position = intersection_position.vectAdd(reflection_direction.vectMult(reflection_intersections.at(index_of_winning_object_with_reflection)));
 				Vect reflection_intersection_ray_direction = reflection_direction;
 
-				Colour reflection_intersection_Colour = getColourAt(reflection_intersection_position, reflection_intersection_ray_direction, scene_objects, index_of_winning_object_with_reflection, light_sources, accuracy, ambientlight);
+				Color reflection_intersection_Color = getColorAt(reflection_intersection_position, reflection_intersection_ray_direction, scene_objects, index_of_winning_object_with_reflection, light_sources, accuracy, ambientlight);
 
-				final_Colour = final_Colour.ColourAdd(reflection_intersection_Colour.ColourScalar(winning_object_Colour.getColourSpecial()));
+				final_Color = final_Color.ColorAdd(reflection_intersection_Color.ColorScalar(winning_object_Color.getColorSpecial()));
 			}
 		}
 	}
@@ -262,10 +266,10 @@ Colour getColourAt(Vect intersection_position, Vect intersecting_ray_direction, 
 			}
 			//If the object is not in shadows
 			if (shadowed == false) {
-				final_Colour = final_Colour.ColourAdd(winning_object_Colour.ColourMultiply(light_sources.at(light_index)->getLightColour()).ColourScalar(cosine_angle));
+				final_Color = final_Color.ColorAdd(winning_object_Color.ColorMultiply(light_sources.at(light_index)->getLightColor()).ColorScalar(cosine_angle));
 
-				//If a Colour has special 0-1 then it has shininess
-				if (winning_object_Colour.getColourSpecial() > 0 && winning_object_Colour.getColourSpecial() <= 1) {
+				//If a Color has special 0-1 then it has shininess
+				if (winning_object_Color.getColorSpecial() > 0 && winning_object_Color.getColorSpecial() <= 1) {
 					double dot1 = winning_object_normal.dotProduct(intersecting_ray_direction.negative());
 					Vect scalar1 = winning_object_normal.vectMult(dot1);
 					Vect add1 = scalar1.vectAdd(intersecting_ray_direction);
@@ -277,15 +281,16 @@ Colour getColourAt(Vect intersection_position, Vect intersecting_ray_direction, 
 					double specular = reflection_direction.dotProduct(light_direction);
 					if (specular > 0) {
 						specular = pow(specular, 10);
-						final_Colour = final_Colour.ColourAdd(light_sources.at(light_index)->getLightColour().ColourScalar(specular*winning_object_Colour.getColourSpecial()));
+						final_Color = final_Color.ColorAdd(light_sources.at(light_index)->getLightColor().ColorScalar(specular*winning_object_Color.getColorSpecial()));
 					}
 				}
 			}
 		}
 	}
-	//Clip the final Colour before returning to ensure correct Colour values
-	return final_Colour.clip();
+	//Clip the final Color before returning to ensure correct Color values
+	return final_Color.clip();
 
 }
+
 
 #endif

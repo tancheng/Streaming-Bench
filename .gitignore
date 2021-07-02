@@ -1,5 +1,7 @@
 *.backup
-.out
+out
+*.bmp
+*.out
 .DS_Store
 *.json
 *.bc

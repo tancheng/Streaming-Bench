@@ -6,7 +6,7 @@
 //Includes
 #include "Ray.h"
 #include "Vect.h"
-#include "Colour.h"
+#include "Color.h"
 
 //The Object class
 class Object {
@@ -16,7 +16,7 @@ class Object {
 
 	//Method functions
 	//Getters
-	virtual Colour getColour () { return Colour (0.0, 0.0, 0.0, 0); }
+	virtual Color getColor () { return Color (0.0, 0.0, 0.0, 0); }
 
 	//Get the normal at a point
 	virtual Vect getNormalAt(Vect intersection_position) {

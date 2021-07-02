@@ -6,26 +6,26 @@
 //Includes
 #include "Source.h"
 #include "Vect.h"
-#include "Colour.h"
+#include "Color.h"
 
 //The Light class 
 class Light : public Source {
 	//The position of the light source
 	Vect position;
-	//The colour of the light
-	Colour colour;
+	//The color of the light
+	Color color;
 
 	public:
 	//Constructor functions
 	Light ();
 
-	Light (Vect, Colour);
+	Light (Vect, Color);
 
 	//Method functions
 
 	//Getters
 	virtual Vect getLightPosition () { return position; }
-	virtual Colour getLightColour () { return colour; }
+	virtual Color getLightColor () { return color; }
 
 };
 
@@ -34,13 +34,13 @@ Light::Light () {
 	//Positioned at the origin
 	position = Vect(0,0,0);
 	//Has white light
-	colour = Colour(1,1,1, 0);
+	color = Color(1,1,1, 0);
 }
 
-//Define a Light's position and colour
-Light::Light (Vect p, Colour c) {
+//Define a Light's position and color
+Light::Light (Vect p, Color c) {
 	position = p;
-	colour = c;
+	color = c;
 }
 
 #endif

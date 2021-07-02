@@ -4,7 +4,7 @@
 
 //Includes
 #include "Vect.h"
-#include "Colour.h"
+#include "Color.h"
 
 //The Source class
 class Source {
@@ -14,7 +14,7 @@ class Source {
 
 	//Getters
 	virtual Vect getLightPosition() {return Vect(0, 0, 0);}
-	virtual Colour getLightColour() {return Colour(1, 1, 1, 0);}
+	virtual Color getLightColor() {return Color(1, 1, 1, 0);}
 
 };
 

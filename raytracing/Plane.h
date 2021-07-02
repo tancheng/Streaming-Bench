@@ -7,7 +7,7 @@
 #include "math.h"
 #include "Object.h"
 #include "Vect.h"
-#include "Colour.h"
+#include "Color.h"
 
 //The plane class
 class Plane : public Object {
@@ -15,21 +15,21 @@ class Plane : public Object {
 	Vect normal;
 	//The distance from the center of the scene to the plane
 	double distance;
-	//The colour of the plane
-	Colour colour;
+	//The color of the plane
+	Color color;
 
 	public:
 	//Constructor functions
 	Plane ();
 
-	Plane (Vect, double, Colour);
+	Plane (Vect, double, Color);
 
 	//Method functions
 
 	//Getters
 	Vect getPlaneNormal () { return normal; }
 	double getPlaneDistance () { return distance; }
-	virtual Colour getColour () { return colour; }
+	virtual Color getColor () { return color; }
 
 	//Get the normal of the plane
 	virtual Vect getNormalAt(Vect point) {
@@ -59,14 +59,14 @@ class Plane : public Object {
 Plane::Plane () {
 	normal = Vect(1,0,0);
 	distance = 0;
-	colour = Colour(0.5,0.5,0.5, 0);
+	color = Color(0.5,0.5,0.5, 0);
 }
 
 //Define a plane 
-Plane::Plane (Vect normalValue, double distanceValue, Colour ColourValue) {
+Plane::Plane (Vect normalValue, double distanceValue, Color ColorValue) {
 	normal = normalValue;
 	distance = distanceValue;
-	colour = ColourValue;
+	color = ColorValue;
 }
 
 #endif

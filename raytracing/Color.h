@@ -1,10 +1,10 @@
 /* THE COLOUR FILE - DEFINES A COLOUR RED, GREEN, BLUE AND SPECIAL FEATURES IN A RAYTRACER */
 
-#ifndef _Colour_H
-#define _Colour_H
+#ifndef _Color_H
+#define _Color_H
 
-//The Colour Class
-class Colour {
+//The Color Class
+class Color {
 	//Define the RGB and special value of a colour
 	double red, green, blue, special;
 	/*
@@ -17,23 +17,23 @@ class Colour {
 
 	public:
 	//Constructor functions
-	Colour ();
+	Color ();
 
-	Colour (double, double, double, double);
+	Color (double, double, double, double);
 
 	//Method functions
 
 	//Getters
-	double getColourRed() { return red; }
-	double getColourGreen() { return green; }
-	double getColourBlue() { return blue; }
-	double getColourSpecial() { return special; }
+	double getColorRed() { return red; }
+	double getColorGreen() { return green; }
+	double getColorBlue() { return blue; }
+	double getColorSpecial() { return special; }
 
 	//Setters
-	double setColourRed(double redValue) { red = redValue; }
-	double setColourGreen(double greenValue) { green = greenValue; }
-	double setColourBlue(double blueValue) { blue = blueValue; }
-	double setColourSpecial(double specialValue) { special = specialValue; }
+	double setColorRed(double redValue) { red = redValue; }
+	double setColorGreen(double greenValue) { green = greenValue; }
+	double setColorBlue(double blueValue) { blue = blueValue; }
+	double setColorSpecial(double specialValue) { special = specialValue; }
 
 	//Get the brightness of a colour
 	double brightness() {
@@ -41,27 +41,27 @@ class Colour {
 	}
 
 	//Multiply a colour by a scalar value
-	Colour ColourScalar(double scalar) {
-		return Colour (red*scalar, green*scalar, blue*scalar, special);
+	Color ColorScalar(double scalar) {
+		return Color (red*scalar, green*scalar, blue*scalar, special);
 	}
 
 	//Add two colours together
-	Colour ColourAdd(Colour colour) {
-		return Colour (red + colour.getColourRed(), green + colour.getColourGreen(), blue + colour.getColourBlue(), special);
+	Color ColorAdd(Color colour) {
+		return Color (red + colour.getColorRed(), green + colour.getColorGreen(), blue + colour.getColorBlue(), special);
 	}
 
 	//Multiply two colours together
-	Colour ColourMultiply(Colour colour) {
-		return Colour (red*colour.getColourRed(), green*colour.getColourGreen(), blue*colour.getColourBlue(), special);
+	Color ColorMultiply(Color colour) {
+		return Color (red*colour.getColorRed(), green*colour.getColorGreen(), blue*colour.getColorBlue(), special);
 	}
 
 	//Find the average of two colours
-	Colour ColourAverage(Colour colour) {
-		return Colour ((red + colour.getColourRed())/2, (green + colour.getColourGreen())/2, (blue + colour.getColourBlue())/2, special);
+	Color ColorAverage(Color colour) {
+		return Color ((red + colour.getColorRed())/2, (green + colour.getColorGreen())/2, (blue + colour.getColorBlue())/2, special);
 	}
 
-	//Clip a colour to ensure its values remain valid (0 < Colour_Value > 1)
-	Colour clip() {
+	//Clip a colour to ensure its values remain valid (0 < Color_Value > 1)
+	Color clip() {
 		double alllight = red + green + blue;
 		double excesslight = alllight - 3;
 		if (excesslight > 0) {
@@ -76,19 +76,19 @@ class Colour {
 		if (green < 0) {green = 0;}
 		if (blue < 0) {blue = 0;}
 
-		return Colour (red, green, blue, special);
+		return Color (red, green, blue, special);
 	}
 };
 
 //The default colour is gray
-Colour::Colour () {
+Color::Color () {
 	red = 0.5;
 	green = 0.5;
 	blue = 0.5;
 }
 
 //Define a colour using rgb values
-Colour::Colour (double r, double g, double b, double s) {
+Color::Color (double r, double g, double b, double s) {
 	red = r;
 	green = g;
 	blue = b;
