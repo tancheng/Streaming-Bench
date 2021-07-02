@@ -19,14 +19,14 @@ print("dataset[250]: ", dataset[250], "; .y: ", dataset[250].y)
 
 train_num = 550
 
-nodes = 0
-count = 0
-for graph in dataset:
-  nodes += len(graph.x)
-  count += 1
-  print(len(graph.x))
-print("avg: ", nodes/count)
-exit(0)
+#nodes = 0
+#count = 0
+#for graph in dataset:
+#  nodes += len(graph.x)
+#  count += 1
+#  print(len(graph.x))
+#print("avg: ", nodes/count)
+#exit(0)
 
 import torch.nn.functional as F
 from torch_geometric.nn import GCNConv
@@ -48,11 +48,7 @@ class Net(torch.nn.Module):
         x = self.conv2(x, edge_index)
 
         batch = torch.zeros([len(x)], dtype=torch.int64)
-#        print("see len(batch): ", len(batch))
-#        print("before: ", x)
         x = global_mean_pool(x, batch)
-#        print("after: ", x)
-        #print("batch: ", batch, self.conv1.weight)
         x = F.log_softmax(x, dim=1)
 #        x = torch.sum(x, 0).unsqueeze(0)
         
@@ -60,8 +56,6 @@ class Net(torch.nn.Module):
 
 model = Net()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.0001, weight_decay=5e-4)
-#criterion = torch.nn.CrossEntropyLoss()
-#optimizer = torch.optim.SGD(model.parameters(), lr=1e-3, momentum=0.6, weight_decay=1e-4)
 
 train_dataset = dataset[:train_num]
 test_dataset = dataset[train_num:]
