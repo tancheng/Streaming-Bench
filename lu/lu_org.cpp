@@ -10,21 +10,13 @@ using namespace std;
  *        containing column indexes where the permutation matrix has "1". The last element P[N]=S+N, 
  *        where S is the number of row exchanges needed for determinant computation, det(P)=(-1)^S    
  */
-int LUPDecompose0(double **A, int N, double Tol, int *P) {
-
-    int i, j, k, imax; 
-
-    for (i = 0; i <= N; i++)
-        P[i] = i; //Unit permutation matrix, P[N] initialized with N
-
-    return 1;
-}
-
-
-int LUPDecompose1(double **A, int N, double Tol, int *P) {
+int LUPDecompose(double **A, int N, double Tol, int *P) {
 
     int i, j, k, imax; 
     double maxA, *ptr, absA;
+
+    for (i = 0; i <= N; i++)
+        P[i] = i; //Unit permutation matrix, P[N] initialized with N
 
     for (i = 0; i < N; i++) {
         maxA = 0.0;
@@ -67,7 +59,7 @@ int LUPDecompose1(double **A, int N, double Tol, int *P) {
 /* INPUT: A,P filled in LUPDecompose; b - rhs vector; N - dimension
  * OUTPUT: x - solution vector of A*x=b
  */
-void LUPSolve0(double **A, int *P, double *b, int N, double *x) {
+void LUPSolve(double **A, int *P, double *b, int N, double *x) {
 
     for (int i = 0; i < N; i++) {
         x[i] = b[P[i]];
@@ -75,9 +67,6 @@ void LUPSolve0(double **A, int *P, double *b, int N, double *x) {
         for (int k = 0; k < i; k++)
             x[i] -= A[i][k] * x[k];
     }
-}
-
-void LUPSolve1(double **A, int *P, double *b, int N, double *x) {
 
     for (int i = N - 1; i >= 0; i--) {
         for (int k = i + 1; k < N; k++)
@@ -144,11 +133,9 @@ int main() {
   b[0] = 10;
   b[1] = 12;
 
-  LUPDecompose0(A, N, 0.001, P);
-  LUPDecompose1(A, N, 0.001, P);
+  LUPDecompose(A, N, 0.001, P);
 
-  LUPSolve0(A, P, b, N, x);
-  LUPSolve1(A, P, b, N, x);
+  LUPSolve(A, P, b, N, x);
 
   LUPInvert(A, P, N, IA);
 
