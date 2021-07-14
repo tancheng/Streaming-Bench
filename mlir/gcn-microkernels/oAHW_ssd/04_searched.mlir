@@ -29,6 +29,26 @@ module  {
         memref.store %11, %5[%arg4, %arg5] : memref<32x4xf32>
       }
     }
+    
+    %6 = memref.alloc() : memref<32x2xf32>
+    scf.for %arg4 = %c0 to %c32 step %c1 {
+      scf.for %arg5 = %c0 to %c2 step %c1 {
+        memref.store %cst, %6[%arg4, %arg5] : memref<32x2xf32>
+      }
+    }
+    %7 = call @sparseValuesF32(%arg2) : (!llvm.ptr<i8>) -> memref<?xf32>
+    
+    %8 = memref.alloc() : memref<32x2xf32>
+    scf.for %arg4 = %c0 to %c32 step %c1 {
+      scf.for %arg5 = %c0 to %c2 step %c1 {
+        %11 = memref.load %6[%arg4, %arg5] : memref<32x2xf32>
+        memref.store %11, %8[%arg4, %arg5] : memref<32x2xf32>
+      }
+    }
+    
+    %9 = memref.alloc() : memref<32x2xf32>
+
+    soda.launch {
     scf.for %arg4 = %c0 to %c32 step %c1 {
       %11 = memref.load %1[%arg4] : memref<?xindex>
       %12 = addi %arg4, %c1 : index
@@ -47,20 +67,7 @@ module  {
         }
       }
     }
-    %6 = memref.alloc() : memref<32x2xf32>
-    scf.for %arg4 = %c0 to %c32 step %c1 {
-      scf.for %arg5 = %c0 to %c2 step %c1 {
-        memref.store %cst, %6[%arg4, %arg5] : memref<32x2xf32>
-      }
-    }
-    %7 = call @sparseValuesF32(%arg2) : (!llvm.ptr<i8>) -> memref<?xf32>
-    %8 = memref.alloc() : memref<32x2xf32>
-    scf.for %arg4 = %c0 to %c32 step %c1 {
-      scf.for %arg5 = %c0 to %c2 step %c1 {
-        %11 = memref.load %6[%arg4, %arg5] : memref<32x2xf32>
-        memref.store %11, %8[%arg4, %arg5] : memref<32x2xf32>
-      }
-    }
+
     scf.for %arg4 = %c0 to %c32 step %c1 {
       scf.for %arg5 = %c0 to %c4 step %c1 {
         %11 = memref.load %5[%arg4, %arg5] : memref<32x4xf32>
@@ -75,7 +82,6 @@ module  {
         }
       }
     }
-    %9 = memref.alloc() : memref<32x2xf32>
     scf.for %arg4 = %c0 to %c32 step %c1 {
       scf.for %arg5 = %c0 to %c2 step %c1 {
         %11 = memref.load %8[%arg4, %arg5] : memref<32x2xf32>
@@ -85,6 +91,8 @@ module  {
         %15 = select %14, %cst_0, %13 : f32
         memref.store %15, %9[%arg4, %arg5] : memref<32x2xf32>
       }
+    }
+      soda.terminator
     }
     %10 = memref.tensor_load %9 : memref<32x2xf32>
     return %10 : tensor<32x2xf32>

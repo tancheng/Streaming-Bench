@@ -5,212 +5,255 @@ declare i8* @malloc(i64)
 
 declare void @free(i8*)
 
-define void @kernel_kernel(i64* %0, i64* %1, i64 %2, i64 %3, i64 %4, i64* %5, i64* %6, i64 %7, i64 %8, i64 %9, float* %10, float* %11, i64 %12, i64 %13, i64 %14, float* %15, float* %16, i64 %17, i64 %18, i64 %19, i64 %20, i64 %21, float* %22, float* %23, i64 %24, i64 %25, i64 %26, float* %27, float* %28, i64 %29, i64 %30, i64 %31, i64 %32, i64 %33, float* %34, float* %35, i64 %36, i64 %37, i64 %38) !dbg !3 {
-  %40 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } undef, i64* %0, 0, !dbg !7
-  %41 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %40, i64* %1, 1, !dbg !9
-  %42 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %41, i64 %2, 2, !dbg !10
-  %43 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %42, i64 %3, 3, 0, !dbg !11
-  %44 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %43, i64 %4, 4, 0, !dbg !12
-  %45 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } undef, i64* %5, 0, !dbg !13
-  %46 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %45, i64* %6, 1, !dbg !14
-  %47 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %46, i64 %7, 2, !dbg !15
-  %48 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %47, i64 %8, 3, 0, !dbg !16
-  %49 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %48, i64 %9, 4, 0, !dbg !17
-  %50 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } undef, float* %10, 0, !dbg !18
-  %51 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %50, float* %11, 1, !dbg !19
-  %52 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %51, i64 %12, 2, !dbg !20
-  %53 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %52, i64 %13, 3, 0, !dbg !21
-  %54 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %53, i64 %14, 4, 0, !dbg !22
-  %55 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } undef, float* %15, 0, !dbg !23
-  %56 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %55, float* %16, 1, !dbg !24
-  %57 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %56, i64 %17, 2, !dbg !25
-  %58 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %57, i64 %18, 3, 0, !dbg !26
-  %59 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %58, i64 %20, 4, 0, !dbg !27
-  %60 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %59, i64 %19, 3, 1, !dbg !28
-  %61 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %60, i64 %21, 4, 1, !dbg !29
-  %62 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } undef, float* %22, 0, !dbg !30
-  %63 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %62, float* %23, 1, !dbg !31
-  %64 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %63, i64 %24, 2, !dbg !32
-  %65 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %64, i64 %25, 3, 0, !dbg !33
-  %66 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %65, i64 %26, 4, 0, !dbg !34
-  %67 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } undef, float* %27, 0, !dbg !35
-  %68 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %67, float* %28, 1, !dbg !36
-  %69 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %68, i64 %29, 2, !dbg !37
-  %70 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %69, i64 %30, 3, 0, !dbg !38
-  %71 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %70, i64 %32, 4, 0, !dbg !39
-  %72 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %71, i64 %31, 3, 1, !dbg !40
-  %73 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %72, i64 %33, 4, 1, !dbg !41
-  %74 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } undef, float* %34, 0, !dbg !42
-  %75 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %74, float* %35, 1, !dbg !43
-  %76 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %75, i64 %36, 2, !dbg !44
-  %77 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %76, i64 %37, 3, 0, !dbg !45
-  %78 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %77, i64 %38, 4, 0, !dbg !46
-  br label %79, !dbg !47
+define void @kernel_kernel(i64* %0, i64* %1, i64 %2, i64 %3, i64 %4, i64* %5, i64* %6, i64 %7, i64 %8, i64 %9, float* %10, float* %11, i64 %12, i64 %13, i64 %14, float* %15, float* %16, i64 %17, i64 %18, i64 %19, i64 %20, i64 %21, float* %22, float* %23, i64 %24, i64 %25, i64 %26, float* %27, float* %28, i64 %29, i64 %30, i64 %31, i64 %32, i64 %33, float* %34, float* %35, i64 %36, i64 %37, i64 %38, float* %39, float* %40, i64 %41, i64 %42, i64 %43, i64 %44, i64 %45) !dbg !3 {
+  %47 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } undef, i64* %0, 0, !dbg !7
+  %48 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %47, i64* %1, 1, !dbg !9
+  %49 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %48, i64 %2, 2, !dbg !10
+  %50 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %49, i64 %3, 3, 0, !dbg !11
+  %51 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %50, i64 %4, 4, 0, !dbg !12
+  %52 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } undef, i64* %5, 0, !dbg !13
+  %53 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %52, i64* %6, 1, !dbg !14
+  %54 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %53, i64 %7, 2, !dbg !15
+  %55 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %54, i64 %8, 3, 0, !dbg !16
+  %56 = insertvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %55, i64 %9, 4, 0, !dbg !17
+  %57 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } undef, float* %10, 0, !dbg !18
+  %58 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %57, float* %11, 1, !dbg !19
+  %59 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %58, i64 %12, 2, !dbg !20
+  %60 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %59, i64 %13, 3, 0, !dbg !21
+  %61 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %60, i64 %14, 4, 0, !dbg !22
+  %62 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } undef, float* %15, 0, !dbg !23
+  %63 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %62, float* %16, 1, !dbg !24
+  %64 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %63, i64 %17, 2, !dbg !25
+  %65 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %64, i64 %18, 3, 0, !dbg !26
+  %66 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %65, i64 %20, 4, 0, !dbg !27
+  %67 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %66, i64 %19, 3, 1, !dbg !28
+  %68 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %67, i64 %21, 4, 1, !dbg !29
+  %69 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } undef, float* %22, 0, !dbg !30
+  %70 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %69, float* %23, 1, !dbg !31
+  %71 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %70, i64 %24, 2, !dbg !32
+  %72 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %71, i64 %25, 3, 0, !dbg !33
+  %73 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %72, i64 %26, 4, 0, !dbg !34
+  %74 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } undef, float* %27, 0, !dbg !35
+  %75 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %74, float* %28, 1, !dbg !36
+  %76 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %75, i64 %29, 2, !dbg !37
+  %77 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %76, i64 %30, 3, 0, !dbg !38
+  %78 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %77, i64 %32, 4, 0, !dbg !39
+  %79 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %78, i64 %31, 3, 1, !dbg !40
+  %80 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %79, i64 %33, 4, 1, !dbg !41
+  %81 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } undef, float* %34, 0, !dbg !42
+  %82 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %81, float* %35, 1, !dbg !43
+  %83 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %82, i64 %36, 2, !dbg !44
+  %84 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %83, i64 %37, 3, 0, !dbg !45
+  %85 = insertvalue { float*, float*, i64, [1 x i64], [1 x i64] } %84, i64 %38, 4, 0, !dbg !46
+  %86 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } undef, float* %39, 0, !dbg !47
+  %87 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %86, float* %40, 1, !dbg !48
+  %88 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %87, i64 %41, 2, !dbg !49
+  %89 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %88, i64 %42, 3, 0, !dbg !50
+  %90 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %89, i64 %44, 4, 0, !dbg !51
+  %91 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %90, i64 %43, 3, 1, !dbg !52
+  %92 = insertvalue { float*, float*, i64, [2 x i64], [2 x i64] } %91, i64 %45, 4, 1, !dbg !53
+  br label %93, !dbg !54
 
-79:                                               ; preds = %123, %39
-  %80 = phi i64 [ %124, %123 ], [ 0, %39 ]
-  %81 = icmp slt i64 %80, 32, !dbg !48
-  br i1 %81, label %82, label %125, !dbg !49
+93:                                               ; preds = %137, %46
+  %94 = phi i64 [ %138, %137 ], [ 0, %46 ]
+  %95 = icmp slt i64 %94, 32, !dbg !55
+  br i1 %95, label %96, label %139, !dbg !56
 
-82:                                               ; preds = %79
-  %83 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %44, 1, !dbg !50
-  %84 = getelementptr i64, i64* %83, i64 %80, !dbg !51
-  %85 = load i64, i64* %84, align 4, !dbg !52
-  %86 = add i64 %80, 1, !dbg !53
-  %87 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %44, 1, !dbg !54
-  %88 = getelementptr i64, i64* %87, i64 %86, !dbg !55
-  %89 = load i64, i64* %88, align 4, !dbg !56
-  br label %90, !dbg !57
+96:                                               ; preds = %93
+  %97 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %51, 1, !dbg !57
+  %98 = getelementptr i64, i64* %97, i64 %94, !dbg !58
+  %99 = load i64, i64* %98, align 4, !dbg !59
+  %100 = add i64 %94, 1, !dbg !60
+  %101 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %51, 1, !dbg !61
+  %102 = getelementptr i64, i64* %101, i64 %100, !dbg !62
+  %103 = load i64, i64* %102, align 4, !dbg !63
+  br label %104, !dbg !64
 
-90:                                               ; preds = %121, %82
-  %91 = phi i64 [ %122, %121 ], [ %85, %82 ]
-  %92 = icmp slt i64 %91, %89, !dbg !58
-  br i1 %92, label %93, label %123, !dbg !59
+104:                                              ; preds = %135, %96
+  %105 = phi i64 [ %136, %135 ], [ %99, %96 ]
+  %106 = icmp slt i64 %105, %103, !dbg !65
+  br i1 %106, label %107, label %137, !dbg !66
 
-93:                                               ; preds = %90
-  %94 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %49, 1, !dbg !60
-  %95 = getelementptr i64, i64* %94, i64 %91, !dbg !61
-  %96 = load i64, i64* %95, align 4, !dbg !62
-  %97 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %54, 1, !dbg !63
-  %98 = getelementptr float, float* %97, i64 %91, !dbg !64
-  %99 = load float, float* %98, align 4, !dbg !65
-  br label %100, !dbg !66
+107:                                              ; preds = %104
+  %108 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %56, 1, !dbg !67
+  %109 = getelementptr i64, i64* %108, i64 %105, !dbg !68
+  %110 = load i64, i64* %109, align 4, !dbg !69
+  %111 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %61, 1, !dbg !70
+  %112 = getelementptr float, float* %111, i64 %105, !dbg !71
+  %113 = load float, float* %112, align 4, !dbg !72
+  br label %114, !dbg !73
 
-100:                                              ; preds = %103, %93
-  %101 = phi i64 [ %120, %103 ], [ 0, %93 ]
-  %102 = icmp slt i64 %101, 4, !dbg !67
-  br i1 %102, label %103, label %121, !dbg !68
+114:                                              ; preds = %117, %107
+  %115 = phi i64 [ %134, %117 ], [ 0, %107 ]
+  %116 = icmp slt i64 %115, 4, !dbg !74
+  br i1 %116, label %117, label %135, !dbg !75
 
-103:                                              ; preds = %100
-  %104 = mul i64 %96, 4, !dbg !69
-  %105 = add i64 %104, %101, !dbg !70
-  %106 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %61, 1, !dbg !71
-  %107 = mul i64 %80, 4, !dbg !72
-  %108 = add i64 %107, %101, !dbg !73
-  %109 = getelementptr float, float* %106, i64 %108, !dbg !74
-  %110 = load float, float* %109, align 4, !dbg !75
-  %111 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %66, 1, !dbg !76
-  %112 = getelementptr float, float* %111, i64 %105, !dbg !77
-  %113 = load float, float* %112, align 4, !dbg !78
-  %114 = fmul float %99, %113, !dbg !79
-  %115 = fadd float %110, %114, !dbg !80
-  %116 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %61, 1, !dbg !81
-  %117 = mul i64 %80, 4, !dbg !82
-  %118 = add i64 %117, %101, !dbg !83
-  %119 = getelementptr float, float* %116, i64 %118, !dbg !84
-  store float %115, float* %119, align 4, !dbg !85
-  %120 = add i64 %101, 1, !dbg !86
-  br label %100, !dbg !87
+117:                                              ; preds = %114
+  %118 = mul i64 %110, 4, !dbg !76
+  %119 = add i64 %118, %115, !dbg !77
+  %120 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %68, 1, !dbg !78
+  %121 = mul i64 %94, 4, !dbg !79
+  %122 = add i64 %121, %115, !dbg !80
+  %123 = getelementptr float, float* %120, i64 %122, !dbg !81
+  %124 = load float, float* %123, align 4, !dbg !82
+  %125 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %73, 1, !dbg !83
+  %126 = getelementptr float, float* %125, i64 %119, !dbg !84
+  %127 = load float, float* %126, align 4, !dbg !85
+  %128 = fmul float %113, %127, !dbg !86
+  %129 = fadd float %124, %128, !dbg !87
+  %130 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %68, 1, !dbg !88
+  %131 = mul i64 %94, 4, !dbg !89
+  %132 = add i64 %131, %115, !dbg !90
+  %133 = getelementptr float, float* %130, i64 %132, !dbg !91
+  store float %129, float* %133, align 4, !dbg !92
+  %134 = add i64 %115, 1, !dbg !93
+  br label %114, !dbg !94
 
-121:                                              ; preds = %100
-  %122 = add i64 %91, 1, !dbg !88
-  br label %90, !dbg !89
+135:                                              ; preds = %114
+  %136 = add i64 %105, 1, !dbg !95
+  br label %104, !dbg !96
 
-123:                                              ; preds = %90
-  %124 = add i64 %80, 1, !dbg !90
-  br label %79, !dbg !91
+137:                                              ; preds = %104
+  %138 = add i64 %94, 1, !dbg !97
+  br label %93, !dbg !98
 
-125:                                              ; preds = %79
-  br label %126, !dbg !92
+139:                                              ; preds = %93
+  br label %140, !dbg !99
 
-126:                                              ; preds = %158, %125
-  %127 = phi i64 [ %159, %158 ], [ 0, %125 ]
-  %128 = icmp slt i64 %127, 128, !dbg !93
-  br i1 %128, label %129, label %160, !dbg !94
+140:                                              ; preds = %172, %139
+  %141 = phi i64 [ %173, %172 ], [ 0, %139 ]
+  %142 = icmp slt i64 %141, 128, !dbg !100
+  br i1 %142, label %143, label %174, !dbg !101
 
-129:                                              ; preds = %126
-  %130 = srem i64 %127, 4, !dbg !95
-  %131 = sdiv i64 %127, 4, !dbg !96
-  %132 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %61, 1, !dbg !97
-  %133 = mul i64 %131, 4, !dbg !98
-  %134 = add i64 %133, %130, !dbg !99
-  %135 = getelementptr float, float* %132, i64 %134, !dbg !100
-  %136 = load float, float* %135, align 4, !dbg !101
-  br label %137, !dbg !102
+143:                                              ; preds = %140
+  %144 = srem i64 %141, 4, !dbg !102
+  %145 = sdiv i64 %141, 4, !dbg !103
+  %146 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %68, 1, !dbg !104
+  %147 = mul i64 %145, 4, !dbg !105
+  %148 = add i64 %147, %144, !dbg !106
+  %149 = getelementptr float, float* %146, i64 %148, !dbg !107
+  %150 = load float, float* %149, align 4, !dbg !108
+  br label %151, !dbg !109
 
-137:                                              ; preds = %140, %129
-  %138 = phi i64 [ %157, %140 ], [ 0, %129 ]
-  %139 = icmp slt i64 %138, 2, !dbg !103
-  br i1 %139, label %140, label %158, !dbg !104
+151:                                              ; preds = %154, %143
+  %152 = phi i64 [ %171, %154 ], [ 0, %143 ]
+  %153 = icmp slt i64 %152, 2, !dbg !110
+  br i1 %153, label %154, label %172, !dbg !111
 
-140:                                              ; preds = %137
-  %141 = mul i64 %130, 2, !dbg !105
-  %142 = add i64 %141, %138, !dbg !106
-  %143 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %73, 1, !dbg !107
-  %144 = mul i64 %131, 2, !dbg !108
-  %145 = add i64 %144, %138, !dbg !109
-  %146 = getelementptr float, float* %143, i64 %145, !dbg !110
-  %147 = load float, float* %146, align 4, !dbg !111
-  %148 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %78, 1, !dbg !112
-  %149 = getelementptr float, float* %148, i64 %142, !dbg !113
-  %150 = load float, float* %149, align 4, !dbg !114
-  %151 = fmul float %136, %150, !dbg !115
-  %152 = fadd float %147, %151, !dbg !116
-  %153 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %73, 1, !dbg !117
-  %154 = mul i64 %131, 2, !dbg !118
-  %155 = add i64 %154, %138, !dbg !119
-  %156 = getelementptr float, float* %153, i64 %155, !dbg !120
-  store float %152, float* %156, align 4, !dbg !121
-  %157 = add i64 %138, 1, !dbg !122
-  br label %137, !dbg !123
+154:                                              ; preds = %151
+  %155 = mul i64 %144, 2, !dbg !112
+  %156 = add i64 %155, %152, !dbg !113
+  %157 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %80, 1, !dbg !114
+  %158 = mul i64 %145, 2, !dbg !115
+  %159 = add i64 %158, %152, !dbg !116
+  %160 = getelementptr float, float* %157, i64 %159, !dbg !117
+  %161 = load float, float* %160, align 4, !dbg !118
+  %162 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %85, 1, !dbg !119
+  %163 = getelementptr float, float* %162, i64 %156, !dbg !120
+  %164 = load float, float* %163, align 4, !dbg !121
+  %165 = fmul float %150, %164, !dbg !122
+  %166 = fadd float %161, %165, !dbg !123
+  %167 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %80, 1, !dbg !124
+  %168 = mul i64 %145, 2, !dbg !125
+  %169 = add i64 %168, %152, !dbg !126
+  %170 = getelementptr float, float* %167, i64 %169, !dbg !127
+  store float %166, float* %170, align 4, !dbg !128
+  %171 = add i64 %152, 1, !dbg !129
+  br label %151, !dbg !130
 
-158:                                              ; preds = %137
-  %159 = add i64 %127, 1, !dbg !124
-  br label %126, !dbg !125
+172:                                              ; preds = %151
+  %173 = add i64 %141, 1, !dbg !131
+  br label %140, !dbg !132
 
-160:                                              ; preds = %126
-  ret void, !dbg !126
+174:                                              ; preds = %140
+  br label %175, !dbg !133
+
+175:                                              ; preds = %178, %174
+  %176 = phi i64 [ %194, %178 ], [ 0, %174 ]
+  %177 = icmp slt i64 %176, 64, !dbg !134
+  br i1 %177, label %178, label %195, !dbg !135
+
+178:                                              ; preds = %175
+  %179 = srem i64 %176, 2, !dbg !136
+  %180 = sdiv i64 %176, 2, !dbg !137
+  %181 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %80, 1, !dbg !138
+  %182 = mul i64 %180, 2, !dbg !139
+  %183 = add i64 %182, %179, !dbg !140
+  %184 = getelementptr float, float* %181, i64 %183, !dbg !141
+  %185 = load float, float* %184, align 4, !dbg !142
+  %186 = fcmp olt float %185, 0.000000e+00, !dbg !143
+  %187 = select i1 %186, float 0.000000e+00, float %185, !dbg !144
+  %188 = fcmp olt float 0x47EFFFFFE0000000, %185, !dbg !145
+  %189 = select i1 %188, float 0x47EFFFFFE0000000, float %187, !dbg !146
+  %190 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %92, 1, !dbg !147
+  %191 = mul i64 %180, 2, !dbg !148
+  %192 = add i64 %191, %179, !dbg !149
+  %193 = getelementptr float, float* %190, i64 %192, !dbg !150
+  store float %189, float* %193, align 4, !dbg !151
+  %194 = add i64 %176, 1, !dbg !152
+  br label %175, !dbg !153
+
+195:                                              ; preds = %175
+  ret void, !dbg !154
 }
 
-define void @_mlir_ciface_kernel_kernel({ i64*, i64*, i64, [1 x i64], [1 x i64] }* %0, { i64*, i64*, i64, [1 x i64], [1 x i64] }* %1, { float*, float*, i64, [1 x i64], [1 x i64] }* %2, { float*, float*, i64, [2 x i64], [2 x i64] }* %3, { float*, float*, i64, [1 x i64], [1 x i64] }* %4, { float*, float*, i64, [2 x i64], [2 x i64] }* %5, { float*, float*, i64, [1 x i64], [1 x i64] }* %6) !dbg !127 {
-  %8 = load { i64*, i64*, i64, [1 x i64], [1 x i64] }, { i64*, i64*, i64, [1 x i64], [1 x i64] }* %0, align 8, !dbg !128
-  %9 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %8, 0, !dbg !130
-  %10 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %8, 1, !dbg !131
-  %11 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %8, 2, !dbg !132
-  %12 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %8, 3, 0, !dbg !133
-  %13 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %8, 4, 0, !dbg !134
-  %14 = load { i64*, i64*, i64, [1 x i64], [1 x i64] }, { i64*, i64*, i64, [1 x i64], [1 x i64] }* %1, align 8, !dbg !135
-  %15 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %14, 0, !dbg !136
-  %16 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %14, 1, !dbg !137
-  %17 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %14, 2, !dbg !138
-  %18 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %14, 3, 0, !dbg !139
-  %19 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %14, 4, 0, !dbg !140
-  %20 = load { float*, float*, i64, [1 x i64], [1 x i64] }, { float*, float*, i64, [1 x i64], [1 x i64] }* %2, align 8, !dbg !141
-  %21 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %20, 0, !dbg !142
-  %22 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %20, 1, !dbg !143
-  %23 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %20, 2, !dbg !144
-  %24 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %20, 3, 0, !dbg !145
-  %25 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %20, 4, 0, !dbg !146
-  %26 = load { float*, float*, i64, [2 x i64], [2 x i64] }, { float*, float*, i64, [2 x i64], [2 x i64] }* %3, align 8, !dbg !147
-  %27 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %26, 0, !dbg !148
-  %28 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %26, 1, !dbg !149
-  %29 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %26, 2, !dbg !150
-  %30 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %26, 3, 0, !dbg !151
-  %31 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %26, 3, 1, !dbg !152
-  %32 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %26, 4, 0, !dbg !153
-  %33 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %26, 4, 1, !dbg !154
-  %34 = load { float*, float*, i64, [1 x i64], [1 x i64] }, { float*, float*, i64, [1 x i64], [1 x i64] }* %4, align 8, !dbg !155
-  %35 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %34, 0, !dbg !156
-  %36 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %34, 1, !dbg !157
-  %37 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %34, 2, !dbg !158
-  %38 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %34, 3, 0, !dbg !159
-  %39 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %34, 4, 0, !dbg !160
-  %40 = load { float*, float*, i64, [2 x i64], [2 x i64] }, { float*, float*, i64, [2 x i64], [2 x i64] }* %5, align 8, !dbg !161
-  %41 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %40, 0, !dbg !162
-  %42 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %40, 1, !dbg !163
-  %43 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %40, 2, !dbg !164
-  %44 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %40, 3, 0, !dbg !165
-  %45 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %40, 3, 1, !dbg !166
-  %46 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %40, 4, 0, !dbg !167
-  %47 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %40, 4, 1, !dbg !168
-  %48 = load { float*, float*, i64, [1 x i64], [1 x i64] }, { float*, float*, i64, [1 x i64], [1 x i64] }* %6, align 8, !dbg !169
-  %49 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %48, 0, !dbg !170
-  %50 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %48, 1, !dbg !171
-  %51 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %48, 2, !dbg !172
-  %52 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %48, 3, 0, !dbg !173
-  %53 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %48, 4, 0, !dbg !174
-  call void @kernel_kernel(i64* %9, i64* %10, i64 %11, i64 %12, i64 %13, i64* %15, i64* %16, i64 %17, i64 %18, i64 %19, float* %21, float* %22, i64 %23, i64 %24, i64 %25, float* %27, float* %28, i64 %29, i64 %30, i64 %31, i64 %32, i64 %33, float* %35, float* %36, i64 %37, i64 %38, i64 %39, float* %41, float* %42, i64 %43, i64 %44, i64 %45, i64 %46, i64 %47, float* %49, float* %50, i64 %51, i64 %52, i64 %53), !dbg !175
-  ret void, !dbg !176
+define void @_mlir_ciface_kernel_kernel({ i64*, i64*, i64, [1 x i64], [1 x i64] }* %0, { i64*, i64*, i64, [1 x i64], [1 x i64] }* %1, { float*, float*, i64, [1 x i64], [1 x i64] }* %2, { float*, float*, i64, [2 x i64], [2 x i64] }* %3, { float*, float*, i64, [1 x i64], [1 x i64] }* %4, { float*, float*, i64, [2 x i64], [2 x i64] }* %5, { float*, float*, i64, [1 x i64], [1 x i64] }* %6, { float*, float*, i64, [2 x i64], [2 x i64] }* %7) !dbg !155 {
+  %9 = load { i64*, i64*, i64, [1 x i64], [1 x i64] }, { i64*, i64*, i64, [1 x i64], [1 x i64] }* %0, align 8, !dbg !156
+  %10 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %9, 0, !dbg !158
+  %11 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %9, 1, !dbg !159
+  %12 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %9, 2, !dbg !160
+  %13 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %9, 3, 0, !dbg !161
+  %14 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %9, 4, 0, !dbg !162
+  %15 = load { i64*, i64*, i64, [1 x i64], [1 x i64] }, { i64*, i64*, i64, [1 x i64], [1 x i64] }* %1, align 8, !dbg !163
+  %16 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %15, 0, !dbg !164
+  %17 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %15, 1, !dbg !165
+  %18 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %15, 2, !dbg !166
+  %19 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %15, 3, 0, !dbg !167
+  %20 = extractvalue { i64*, i64*, i64, [1 x i64], [1 x i64] } %15, 4, 0, !dbg !168
+  %21 = load { float*, float*, i64, [1 x i64], [1 x i64] }, { float*, float*, i64, [1 x i64], [1 x i64] }* %2, align 8, !dbg !169
+  %22 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %21, 0, !dbg !170
+  %23 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %21, 1, !dbg !171
+  %24 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %21, 2, !dbg !172
+  %25 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %21, 3, 0, !dbg !173
+  %26 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %21, 4, 0, !dbg !174
+  %27 = load { float*, float*, i64, [2 x i64], [2 x i64] }, { float*, float*, i64, [2 x i64], [2 x i64] }* %3, align 8, !dbg !175
+  %28 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %27, 0, !dbg !176
+  %29 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %27, 1, !dbg !177
+  %30 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %27, 2, !dbg !178
+  %31 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %27, 3, 0, !dbg !179
+  %32 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %27, 3, 1, !dbg !180
+  %33 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %27, 4, 0, !dbg !181
+  %34 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %27, 4, 1, !dbg !182
+  %35 = load { float*, float*, i64, [1 x i64], [1 x i64] }, { float*, float*, i64, [1 x i64], [1 x i64] }* %4, align 8, !dbg !183
+  %36 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %35, 0, !dbg !184
+  %37 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %35, 1, !dbg !185
+  %38 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %35, 2, !dbg !186
+  %39 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %35, 3, 0, !dbg !187
+  %40 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %35, 4, 0, !dbg !188
+  %41 = load { float*, float*, i64, [2 x i64], [2 x i64] }, { float*, float*, i64, [2 x i64], [2 x i64] }* %5, align 8, !dbg !189
+  %42 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %41, 0, !dbg !190
+  %43 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %41, 1, !dbg !191
+  %44 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %41, 2, !dbg !192
+  %45 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %41, 3, 0, !dbg !193
+  %46 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %41, 3, 1, !dbg !194
+  %47 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %41, 4, 0, !dbg !195
+  %48 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %41, 4, 1, !dbg !196
+  %49 = load { float*, float*, i64, [1 x i64], [1 x i64] }, { float*, float*, i64, [1 x i64], [1 x i64] }* %6, align 8, !dbg !197
+  %50 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %49, 0, !dbg !198
+  %51 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %49, 1, !dbg !199
+  %52 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %49, 2, !dbg !200
+  %53 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %49, 3, 0, !dbg !201
+  %54 = extractvalue { float*, float*, i64, [1 x i64], [1 x i64] } %49, 4, 0, !dbg !202
+  %55 = load { float*, float*, i64, [2 x i64], [2 x i64] }, { float*, float*, i64, [2 x i64], [2 x i64] }* %7, align 8, !dbg !203
+  %56 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %55, 0, !dbg !204
+  %57 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %55, 1, !dbg !205
+  %58 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %55, 2, !dbg !206
+  %59 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %55, 3, 0, !dbg !207
+  %60 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %55, 3, 1, !dbg !208
+  %61 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %55, 4, 0, !dbg !209
+  %62 = extractvalue { float*, float*, i64, [2 x i64], [2 x i64] } %55, 4, 1, !dbg !210
+  call void @kernel_kernel(i64* %10, i64* %11, i64 %12, i64 %13, i64 %14, i64* %16, i64* %17, i64 %18, i64 %19, i64 %20, float* %22, float* %23, i64 %24, i64 %25, i64 %26, float* %28, float* %29, i64 %30, i64 %31, i64 %32, i64 %33, i64 %34, float* %36, float* %37, i64 %38, i64 %39, i64 %40, float* %42, float* %43, i64 %44, i64 %45, i64 %46, i64 %47, i64 %48, float* %50, float* %51, i64 %52, i64 %53, i64 %54, float* %56, float* %57, i64 %58, i64 %59, i64 %60, i64 %61, i64 %62), !dbg !211
+  ret void, !dbg !212
 }
 
 !llvm.dbg.cu = !{!0}
@@ -220,7 +263,7 @@ define void @_mlir_ciface_kernel_kernel({ i64*, i64*, i64, [1 x i64], [1 x i64] 
 !1 = !DIFile(filename: "LLVMDialectModule", directory: "/")
 !2 = !{i32 2, !"Debug Info Version", i32 3}
 !3 = distinct !DISubprogram(name: "kernel_kernel", linkageName: "kernel_kernel", scope: null, file: !4, line: 4, type: !5, scopeLine: 4, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0, retainedNodes: !6)
-!4 = !DIFile(filename: "07_llvm.mlir", directory: "/home/nico/Development/soda/builds/tmp/cheng/mlir/gcn-microkernels/AHW_sdd")
+!4 = !DIFile(filename: "07_llvm.mlir", directory: "/home/nico/Development/soda/builds/tmp/cheng/mlir/gcn-microkernels/oAHW_ssd")
 !5 = !DISubroutineType(types: !6)
 !6 = !{}
 !7 = !DILocation(line: 6, column: 10, scope: !8)
@@ -263,133 +306,169 @@ define void @_mlir_ciface_kernel_kernel({ i64*, i64*, i64, [1 x i64], [1 x i64] 
 !44 = !DILocation(line: 48, column: 11, scope: !8)
 !45 = !DILocation(line: 49, column: 11, scope: !8)
 !46 = !DILocation(line: 50, column: 11, scope: !8)
-!47 = !DILocation(line: 56, column: 5, scope: !8)
-!48 = !DILocation(line: 58, column: 11, scope: !8)
-!49 = !DILocation(line: 59, column: 5, scope: !8)
-!50 = !DILocation(line: 61, column: 11, scope: !8)
-!51 = !DILocation(line: 62, column: 11, scope: !8)
-!52 = !DILocation(line: 63, column: 11, scope: !8)
-!53 = !DILocation(line: 64, column: 11, scope: !8)
-!54 = !DILocation(line: 65, column: 11, scope: !8)
-!55 = !DILocation(line: 66, column: 11, scope: !8)
-!56 = !DILocation(line: 67, column: 11, scope: !8)
-!57 = !DILocation(line: 68, column: 5, scope: !8)
-!58 = !DILocation(line: 70, column: 11, scope: !8)
-!59 = !DILocation(line: 71, column: 5, scope: !8)
-!60 = !DILocation(line: 73, column: 11, scope: !8)
-!61 = !DILocation(line: 74, column: 11, scope: !8)
-!62 = !DILocation(line: 75, column: 11, scope: !8)
-!63 = !DILocation(line: 76, column: 11, scope: !8)
-!64 = !DILocation(line: 77, column: 11, scope: !8)
-!65 = !DILocation(line: 78, column: 11, scope: !8)
-!66 = !DILocation(line: 79, column: 5, scope: !8)
-!67 = !DILocation(line: 81, column: 11, scope: !8)
-!68 = !DILocation(line: 82, column: 5, scope: !8)
-!69 = !DILocation(line: 84, column: 11, scope: !8)
-!70 = !DILocation(line: 85, column: 11, scope: !8)
-!71 = !DILocation(line: 86, column: 11, scope: !8)
+!47 = !DILocation(line: 52, column: 11, scope: !8)
+!48 = !DILocation(line: 53, column: 11, scope: !8)
+!49 = !DILocation(line: 54, column: 11, scope: !8)
+!50 = !DILocation(line: 55, column: 11, scope: !8)
+!51 = !DILocation(line: 56, column: 11, scope: !8)
+!52 = !DILocation(line: 57, column: 11, scope: !8)
+!53 = !DILocation(line: 58, column: 11, scope: !8)
+!54 = !DILocation(line: 66, column: 5, scope: !8)
+!55 = !DILocation(line: 68, column: 11, scope: !8)
+!56 = !DILocation(line: 69, column: 5, scope: !8)
+!57 = !DILocation(line: 71, column: 11, scope: !8)
+!58 = !DILocation(line: 72, column: 11, scope: !8)
+!59 = !DILocation(line: 73, column: 11, scope: !8)
+!60 = !DILocation(line: 74, column: 11, scope: !8)
+!61 = !DILocation(line: 75, column: 11, scope: !8)
+!62 = !DILocation(line: 76, column: 11, scope: !8)
+!63 = !DILocation(line: 77, column: 11, scope: !8)
+!64 = !DILocation(line: 78, column: 5, scope: !8)
+!65 = !DILocation(line: 80, column: 11, scope: !8)
+!66 = !DILocation(line: 81, column: 5, scope: !8)
+!67 = !DILocation(line: 83, column: 11, scope: !8)
+!68 = !DILocation(line: 84, column: 11, scope: !8)
+!69 = !DILocation(line: 85, column: 11, scope: !8)
+!70 = !DILocation(line: 86, column: 11, scope: !8)
+!71 = !DILocation(line: 87, column: 11, scope: !8)
 !72 = !DILocation(line: 88, column: 11, scope: !8)
-!73 = !DILocation(line: 89, column: 11, scope: !8)
-!74 = !DILocation(line: 90, column: 11, scope: !8)
-!75 = !DILocation(line: 91, column: 11, scope: !8)
-!76 = !DILocation(line: 92, column: 11, scope: !8)
-!77 = !DILocation(line: 93, column: 11, scope: !8)
-!78 = !DILocation(line: 94, column: 11, scope: !8)
-!79 = !DILocation(line: 95, column: 11, scope: !8)
-!80 = !DILocation(line: 96, column: 11, scope: !8)
-!81 = !DILocation(line: 97, column: 11, scope: !8)
-!82 = !DILocation(line: 99, column: 11, scope: !8)
-!83 = !DILocation(line: 100, column: 11, scope: !8)
-!84 = !DILocation(line: 101, column: 11, scope: !8)
-!85 = !DILocation(line: 102, column: 5, scope: !8)
-!86 = !DILocation(line: 103, column: 11, scope: !8)
-!87 = !DILocation(line: 104, column: 5, scope: !8)
-!88 = !DILocation(line: 106, column: 11, scope: !8)
-!89 = !DILocation(line: 107, column: 5, scope: !8)
-!90 = !DILocation(line: 109, column: 11, scope: !8)
-!91 = !DILocation(line: 110, column: 5, scope: !8)
-!92 = !DILocation(line: 113, column: 5, scope: !8)
-!93 = !DILocation(line: 115, column: 11, scope: !8)
-!94 = !DILocation(line: 116, column: 5, scope: !8)
-!95 = !DILocation(line: 118, column: 11, scope: !8)
-!96 = !DILocation(line: 119, column: 11, scope: !8)
-!97 = !DILocation(line: 120, column: 11, scope: !8)
-!98 = !DILocation(line: 122, column: 11, scope: !8)
-!99 = !DILocation(line: 123, column: 11, scope: !8)
-!100 = !DILocation(line: 124, column: 12, scope: !8)
-!101 = !DILocation(line: 125, column: 12, scope: !8)
-!102 = !DILocation(line: 126, column: 5, scope: !8)
-!103 = !DILocation(line: 128, column: 12, scope: !8)
-!104 = !DILocation(line: 129, column: 5, scope: !8)
-!105 = !DILocation(line: 131, column: 12, scope: !8)
-!106 = !DILocation(line: 132, column: 12, scope: !8)
-!107 = !DILocation(line: 133, column: 12, scope: !8)
+!73 = !DILocation(line: 89, column: 5, scope: !8)
+!74 = !DILocation(line: 91, column: 11, scope: !8)
+!75 = !DILocation(line: 92, column: 5, scope: !8)
+!76 = !DILocation(line: 94, column: 11, scope: !8)
+!77 = !DILocation(line: 95, column: 11, scope: !8)
+!78 = !DILocation(line: 96, column: 11, scope: !8)
+!79 = !DILocation(line: 98, column: 11, scope: !8)
+!80 = !DILocation(line: 99, column: 11, scope: !8)
+!81 = !DILocation(line: 100, column: 11, scope: !8)
+!82 = !DILocation(line: 101, column: 11, scope: !8)
+!83 = !DILocation(line: 102, column: 11, scope: !8)
+!84 = !DILocation(line: 103, column: 11, scope: !8)
+!85 = !DILocation(line: 104, column: 11, scope: !8)
+!86 = !DILocation(line: 105, column: 11, scope: !8)
+!87 = !DILocation(line: 106, column: 11, scope: !8)
+!88 = !DILocation(line: 107, column: 11, scope: !8)
+!89 = !DILocation(line: 109, column: 11, scope: !8)
+!90 = !DILocation(line: 110, column: 11, scope: !8)
+!91 = !DILocation(line: 111, column: 11, scope: !8)
+!92 = !DILocation(line: 112, column: 5, scope: !8)
+!93 = !DILocation(line: 113, column: 11, scope: !8)
+!94 = !DILocation(line: 114, column: 5, scope: !8)
+!95 = !DILocation(line: 116, column: 11, scope: !8)
+!96 = !DILocation(line: 117, column: 5, scope: !8)
+!97 = !DILocation(line: 119, column: 12, scope: !8)
+!98 = !DILocation(line: 120, column: 5, scope: !8)
+!99 = !DILocation(line: 123, column: 5, scope: !8)
+!100 = !DILocation(line: 125, column: 12, scope: !8)
+!101 = !DILocation(line: 126, column: 5, scope: !8)
+!102 = !DILocation(line: 128, column: 12, scope: !8)
+!103 = !DILocation(line: 129, column: 12, scope: !8)
+!104 = !DILocation(line: 130, column: 12, scope: !8)
+!105 = !DILocation(line: 132, column: 12, scope: !8)
+!106 = !DILocation(line: 133, column: 12, scope: !8)
+!107 = !DILocation(line: 134, column: 12, scope: !8)
 !108 = !DILocation(line: 135, column: 12, scope: !8)
-!109 = !DILocation(line: 136, column: 12, scope: !8)
-!110 = !DILocation(line: 137, column: 12, scope: !8)
-!111 = !DILocation(line: 138, column: 12, scope: !8)
-!112 = !DILocation(line: 139, column: 12, scope: !8)
-!113 = !DILocation(line: 140, column: 12, scope: !8)
-!114 = !DILocation(line: 141, column: 12, scope: !8)
-!115 = !DILocation(line: 142, column: 12, scope: !8)
-!116 = !DILocation(line: 143, column: 12, scope: !8)
-!117 = !DILocation(line: 144, column: 12, scope: !8)
-!118 = !DILocation(line: 146, column: 12, scope: !8)
-!119 = !DILocation(line: 147, column: 12, scope: !8)
-!120 = !DILocation(line: 148, column: 12, scope: !8)
-!121 = !DILocation(line: 149, column: 5, scope: !8)
-!122 = !DILocation(line: 150, column: 12, scope: !8)
-!123 = !DILocation(line: 151, column: 5, scope: !8)
-!124 = !DILocation(line: 153, column: 12, scope: !8)
-!125 = !DILocation(line: 154, column: 5, scope: !8)
-!126 = !DILocation(line: 156, column: 5, scope: !8)
-!127 = distinct !DISubprogram(name: "_mlir_ciface_kernel_kernel", linkageName: "_mlir_ciface_kernel_kernel", scope: null, file: !4, line: 158, type: !5, scopeLine: 158, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0, retainedNodes: !6)
-!128 = !DILocation(line: 159, column: 10, scope: !129)
-!129 = !DILexicalBlockFile(scope: !127, file: !4, discriminator: 0)
-!130 = !DILocation(line: 160, column: 10, scope: !129)
-!131 = !DILocation(line: 161, column: 10, scope: !129)
-!132 = !DILocation(line: 162, column: 10, scope: !129)
-!133 = !DILocation(line: 163, column: 10, scope: !129)
-!134 = !DILocation(line: 164, column: 10, scope: !129)
-!135 = !DILocation(line: 165, column: 10, scope: !129)
-!136 = !DILocation(line: 166, column: 10, scope: !129)
-!137 = !DILocation(line: 167, column: 10, scope: !129)
-!138 = !DILocation(line: 168, column: 10, scope: !129)
-!139 = !DILocation(line: 169, column: 11, scope: !129)
-!140 = !DILocation(line: 170, column: 11, scope: !129)
-!141 = !DILocation(line: 171, column: 11, scope: !129)
-!142 = !DILocation(line: 172, column: 11, scope: !129)
-!143 = !DILocation(line: 173, column: 11, scope: !129)
-!144 = !DILocation(line: 174, column: 11, scope: !129)
-!145 = !DILocation(line: 175, column: 11, scope: !129)
-!146 = !DILocation(line: 176, column: 11, scope: !129)
-!147 = !DILocation(line: 177, column: 11, scope: !129)
-!148 = !DILocation(line: 178, column: 11, scope: !129)
-!149 = !DILocation(line: 179, column: 11, scope: !129)
-!150 = !DILocation(line: 180, column: 11, scope: !129)
-!151 = !DILocation(line: 181, column: 11, scope: !129)
-!152 = !DILocation(line: 182, column: 11, scope: !129)
-!153 = !DILocation(line: 183, column: 11, scope: !129)
-!154 = !DILocation(line: 184, column: 11, scope: !129)
-!155 = !DILocation(line: 185, column: 11, scope: !129)
-!156 = !DILocation(line: 186, column: 11, scope: !129)
-!157 = !DILocation(line: 187, column: 11, scope: !129)
-!158 = !DILocation(line: 188, column: 11, scope: !129)
-!159 = !DILocation(line: 189, column: 11, scope: !129)
-!160 = !DILocation(line: 190, column: 11, scope: !129)
-!161 = !DILocation(line: 191, column: 11, scope: !129)
-!162 = !DILocation(line: 192, column: 11, scope: !129)
-!163 = !DILocation(line: 193, column: 11, scope: !129)
-!164 = !DILocation(line: 194, column: 11, scope: !129)
-!165 = !DILocation(line: 195, column: 11, scope: !129)
-!166 = !DILocation(line: 196, column: 11, scope: !129)
-!167 = !DILocation(line: 197, column: 11, scope: !129)
-!168 = !DILocation(line: 198, column: 11, scope: !129)
-!169 = !DILocation(line: 199, column: 11, scope: !129)
-!170 = !DILocation(line: 200, column: 11, scope: !129)
-!171 = !DILocation(line: 201, column: 11, scope: !129)
-!172 = !DILocation(line: 202, column: 11, scope: !129)
-!173 = !DILocation(line: 203, column: 11, scope: !129)
-!174 = !DILocation(line: 204, column: 11, scope: !129)
-!175 = !DILocation(line: 205, column: 5, scope: !129)
-!176 = !DILocation(line: 206, column: 5, scope: !129)
+!109 = !DILocation(line: 136, column: 5, scope: !8)
+!110 = !DILocation(line: 138, column: 12, scope: !8)
+!111 = !DILocation(line: 139, column: 5, scope: !8)
+!112 = !DILocation(line: 141, column: 12, scope: !8)
+!113 = !DILocation(line: 142, column: 12, scope: !8)
+!114 = !DILocation(line: 143, column: 12, scope: !8)
+!115 = !DILocation(line: 145, column: 12, scope: !8)
+!116 = !DILocation(line: 146, column: 12, scope: !8)
+!117 = !DILocation(line: 147, column: 12, scope: !8)
+!118 = !DILocation(line: 148, column: 12, scope: !8)
+!119 = !DILocation(line: 149, column: 12, scope: !8)
+!120 = !DILocation(line: 150, column: 12, scope: !8)
+!121 = !DILocation(line: 151, column: 12, scope: !8)
+!122 = !DILocation(line: 152, column: 12, scope: !8)
+!123 = !DILocation(line: 153, column: 12, scope: !8)
+!124 = !DILocation(line: 154, column: 12, scope: !8)
+!125 = !DILocation(line: 156, column: 12, scope: !8)
+!126 = !DILocation(line: 157, column: 12, scope: !8)
+!127 = !DILocation(line: 158, column: 12, scope: !8)
+!128 = !DILocation(line: 159, column: 5, scope: !8)
+!129 = !DILocation(line: 160, column: 12, scope: !8)
+!130 = !DILocation(line: 161, column: 5, scope: !8)
+!131 = !DILocation(line: 163, column: 12, scope: !8)
+!132 = !DILocation(line: 164, column: 5, scope: !8)
+!133 = !DILocation(line: 167, column: 5, scope: !8)
+!134 = !DILocation(line: 169, column: 12, scope: !8)
+!135 = !DILocation(line: 170, column: 5, scope: !8)
+!136 = !DILocation(line: 172, column: 12, scope: !8)
+!137 = !DILocation(line: 173, column: 12, scope: !8)
+!138 = !DILocation(line: 174, column: 12, scope: !8)
+!139 = !DILocation(line: 176, column: 12, scope: !8)
+!140 = !DILocation(line: 177, column: 12, scope: !8)
+!141 = !DILocation(line: 178, column: 12, scope: !8)
+!142 = !DILocation(line: 179, column: 12, scope: !8)
+!143 = !DILocation(line: 180, column: 12, scope: !8)
+!144 = !DILocation(line: 181, column: 12, scope: !8)
+!145 = !DILocation(line: 182, column: 12, scope: !8)
+!146 = !DILocation(line: 183, column: 12, scope: !8)
+!147 = !DILocation(line: 184, column: 12, scope: !8)
+!148 = !DILocation(line: 186, column: 12, scope: !8)
+!149 = !DILocation(line: 187, column: 12, scope: !8)
+!150 = !DILocation(line: 188, column: 12, scope: !8)
+!151 = !DILocation(line: 189, column: 5, scope: !8)
+!152 = !DILocation(line: 190, column: 12, scope: !8)
+!153 = !DILocation(line: 191, column: 5, scope: !8)
+!154 = !DILocation(line: 193, column: 5, scope: !8)
+!155 = distinct !DISubprogram(name: "_mlir_ciface_kernel_kernel", linkageName: "_mlir_ciface_kernel_kernel", scope: null, file: !4, line: 195, type: !5, scopeLine: 195, spFlags: DISPFlagDefinition | DISPFlagOptimized, unit: !0, retainedNodes: !6)
+!156 = !DILocation(line: 196, column: 10, scope: !157)
+!157 = !DILexicalBlockFile(scope: !155, file: !4, discriminator: 0)
+!158 = !DILocation(line: 197, column: 10, scope: !157)
+!159 = !DILocation(line: 198, column: 10, scope: !157)
+!160 = !DILocation(line: 199, column: 10, scope: !157)
+!161 = !DILocation(line: 200, column: 10, scope: !157)
+!162 = !DILocation(line: 201, column: 10, scope: !157)
+!163 = !DILocation(line: 202, column: 10, scope: !157)
+!164 = !DILocation(line: 203, column: 10, scope: !157)
+!165 = !DILocation(line: 204, column: 10, scope: !157)
+!166 = !DILocation(line: 205, column: 10, scope: !157)
+!167 = !DILocation(line: 206, column: 11, scope: !157)
+!168 = !DILocation(line: 207, column: 11, scope: !157)
+!169 = !DILocation(line: 208, column: 11, scope: !157)
+!170 = !DILocation(line: 209, column: 11, scope: !157)
+!171 = !DILocation(line: 210, column: 11, scope: !157)
+!172 = !DILocation(line: 211, column: 11, scope: !157)
+!173 = !DILocation(line: 212, column: 11, scope: !157)
+!174 = !DILocation(line: 213, column: 11, scope: !157)
+!175 = !DILocation(line: 214, column: 11, scope: !157)
+!176 = !DILocation(line: 215, column: 11, scope: !157)
+!177 = !DILocation(line: 216, column: 11, scope: !157)
+!178 = !DILocation(line: 217, column: 11, scope: !157)
+!179 = !DILocation(line: 218, column: 11, scope: !157)
+!180 = !DILocation(line: 219, column: 11, scope: !157)
+!181 = !DILocation(line: 220, column: 11, scope: !157)
+!182 = !DILocation(line: 221, column: 11, scope: !157)
+!183 = !DILocation(line: 222, column: 11, scope: !157)
+!184 = !DILocation(line: 223, column: 11, scope: !157)
+!185 = !DILocation(line: 224, column: 11, scope: !157)
+!186 = !DILocation(line: 225, column: 11, scope: !157)
+!187 = !DILocation(line: 226, column: 11, scope: !157)
+!188 = !DILocation(line: 227, column: 11, scope: !157)
+!189 = !DILocation(line: 228, column: 11, scope: !157)
+!190 = !DILocation(line: 229, column: 11, scope: !157)
+!191 = !DILocation(line: 230, column: 11, scope: !157)
+!192 = !DILocation(line: 231, column: 11, scope: !157)
+!193 = !DILocation(line: 232, column: 11, scope: !157)
+!194 = !DILocation(line: 233, column: 11, scope: !157)
+!195 = !DILocation(line: 234, column: 11, scope: !157)
+!196 = !DILocation(line: 235, column: 11, scope: !157)
+!197 = !DILocation(line: 236, column: 11, scope: !157)
+!198 = !DILocation(line: 237, column: 11, scope: !157)
+!199 = !DILocation(line: 238, column: 11, scope: !157)
+!200 = !DILocation(line: 239, column: 11, scope: !157)
+!201 = !DILocation(line: 240, column: 11, scope: !157)
+!202 = !DILocation(line: 241, column: 11, scope: !157)
+!203 = !DILocation(line: 242, column: 11, scope: !157)
+!204 = !DILocation(line: 243, column: 11, scope: !157)
+!205 = !DILocation(line: 244, column: 11, scope: !157)
+!206 = !DILocation(line: 245, column: 11, scope: !157)
+!207 = !DILocation(line: 246, column: 11, scope: !157)
+!208 = !DILocation(line: 247, column: 11, scope: !157)
+!209 = !DILocation(line: 248, column: 11, scope: !157)
+!210 = !DILocation(line: 249, column: 11, scope: !157)
+!211 = !DILocation(line: 250, column: 5, scope: !157)
+!212 = !DILocation(line: 251, column: 5, scope: !157)
