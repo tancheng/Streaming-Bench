@@ -3,7 +3,7 @@ This folder contains microkernels found in GNN models.
 Each subfolder will contain a couple of files.
 
 - 00_kernel.mlir : high-level microkernel in MLIR
-- 01_annotated.mlir : microkernel : annotated with sparse encodings
+- 01_annotated.mlir : microkernel annotated with sparse encodings
 - 02_lowered.mlir : sparse encodings are transformed into loop computations
 - 03_searched.mlir : marked for outlining with soda-opt
 - 04_isolated.mlir : only sparse computation is present
