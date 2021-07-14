@@ -1,5 +1,5 @@
 // RUN: soda-opt 04_searched.mlir --soda-outline-bambu-code --soda-generate-bambu-accelcode --canonicalize -o 05_isolated.mlir
-// RUN: mlir-opt 05_isolated.mlir --canonicalize --loop-coalescing -o 06_optimized.mlir
+
 module  {
   func private @sparseValuesF32(!llvm.ptr<i8>) -> memref<?xf32>
   func @kernel(%arg0: !llvm.ptr<i8>, %arg1: !llvm.ptr<i8>, %arg2: tensor<32x4xf32> {linalg.inplaceable = true}) -> tensor<32x4xf32> {
