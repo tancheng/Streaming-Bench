@@ -41,113 +41,6 @@ int main()
 
 void kernel(double **A, int *P, int N, double **IA) {
 
-  int bound = N*N*N;
-//  #pragma clang loop unroll_count(4)
-  for(int index=0; index<bound; index+=4) {
-    int j = index / N / N;
-    int i0 = index / N % N;
-    int i1 = N-1-i0;
-    int k = index % N;
-    if(P[i0] == j) {
-      IA[i0][j] = 1;
-    } else {
-      IA[i0][j] = 0;
-    }
-    if(k<i0) {
-      IA[i0][j] -= A[i0][k] * IA[k][j];
-    }
-    if(k>=i1+1) {
-      IA[i1][j] -= A[i1][k] * IA[k][j];
-    }
-    if(k==N-1){
-      IA[i1][j] /= A[i1][i1];
-    }
-
-//    index++;
-//    j = index / N / N;
-//    i0 = index / N % N;
-//    i1 = N-1-i0;
-//    k = index % N;
-//    if(P[i0] == j) {
-//      IA[i0][j] = 1;
-//    } else {
-//      IA[i0][j] = 0;
-//    }
-//    if(k<i0) {
-//      IA[i0][j] -= A[i0][k] * IA[k][j];
-//    }
-//    if(k>=i1+1) {
-//      IA[i1][j] -= A[i1][k] * IA[k][j];
-//    }
-//    if(k==N-1){
-//      IA[i1][j] /= A[i1][i1];
-//    }
-//
-//    index++;
-//    j = index / N / N;
-//    i0 = index / N % N;
-//    i1 = N-1-i0;
-//    k = index % N;
-//    if(P[i0] == j) {
-//      IA[i0][j] = 1;
-//    } else {
-//      IA[i0][j] = 0;
-//    }
-//    if(k<i0) {
-//      IA[i0][j] -= A[i0][k] * IA[k][j];
-//    }
-//    if(k>=i1+1) {
-//      IA[i1][j] -= A[i1][k] * IA[k][j];
-//    }
-//    if(k==N-1){
-//      IA[i1][j] /= A[i1][i1];
-//    }
-//
-//    index++;
-//    j = index / N / N;
-//    i0 = index / N % N;
-//    i1 = N-1-i0;
-//    k = index % N;
-//    if(P[i0] == j) {
-//      IA[i0][j] = 1;
-//    } else {
-//      IA[i0][j] = 0;
-//    }
-//    if(k<i0) {
-//      IA[i0][j] -= A[i0][k] * IA[k][j];
-//    }
-//    if(k>=i1+1) {
-//      IA[i1][j] -= A[i1][k] * IA[k][j];
-//    }
-//    if(k==N-1){
-//      IA[i1][j] /= A[i1][i1];
-//    }
-
-  }
-
-//  for(int index=0; index<bound; ++index) {
-//    int j = index / N / N;
-//    int i0 = index / N % N;
-//    int i1 = N-1-i0;
-//    int k = index % N;
-//    if(P[i0] == j) {
-//      IA[i0][j] = 1;
-//    } else {
-//      IA[i0][j] = 0;
-//    }
-//    if(k<i0) {
-//      IA[i0][j] -= A[i0][k] * IA[k][j];
-//    }
-//    if(k>=i1+1) {
-//      IA[i1][j] -= A[i1][k] * IA[k][j];
-//    }
-//    if(k==N-1){
-//      IA[i1][j] /= A[i1][i1];
-//    }
-//  }
-
-
-/*
   for (int j = 0; j < N; j++) {
     for (int i = 0; i < N; i++) {
       IA[i][j] = P[i] == j ? 1.0 : 0.0;
@@ -163,7 +56,6 @@ void kernel(double **A, int *P, int N, double **IA) {
       IA[i][j] /= A[i][i];
     }
   }
-*/
 
 }
 
