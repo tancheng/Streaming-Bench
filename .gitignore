@@ -3,7 +3,6 @@ out
 *.bmp
 *.out
 .DS_Store
-*.json
 *.bc
 *.dot
 *.png
