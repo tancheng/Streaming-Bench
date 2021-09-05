@@ -1,1 +1,1 @@
-dot -Tpng _Z6kernelPPdPiiS0_.dot -o kernel.png
+dot -Tpng _Z6kernelPPdidPi.dot -o kernel.png

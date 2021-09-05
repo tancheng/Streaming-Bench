@@ -2,7 +2,7 @@
 /* Modified to use arrays - SMP */
 
 //#include "traps.h"
-
+#include <math.h>
 #include<iostream>
 
 using namespace std;
@@ -41,173 +41,6 @@ int main()
 
 int kernel(double **A, int N, double Tol, int *P) {
 
-  int imax;
-  double maxA, *ptr, absA;
-  int bound = N*N*N;
-  for(int index=0; index<bound; index+=1) {
-
-    int i = index / N / N;
-    int k0 = index / N % N;
-    int j = k0;
-    int k1 = index % N;
-    if(k1 == 0 and k0 == 0) {
-      maxA = 0.0;
-      imax = i;
-    }
-
-    if(k1 == 0 and k0>=i) {
-      if ((absA = fabs(A[k0][i])) > maxA) {
-        maxA = absA;
-        imax = k0;
-      }
-    }
-
-    if(k1 == 0 and k0 == 0 and imax != i) {
-      //pivoting P
-      j = P[i];
-      P[i] = P[imax];
-      P[imax] = j;
-
-      //pivoting rows of A
-      ptr = A[i];
-      A[i] = A[imax];
-      A[imax] = ptr;
-
-      //counting pivots starting from N (for determinant)
-      P[N]++;
-    }
-
-    if(k1 == 0 and j >= i+1) {
-      A[j][i] /= A[i][i];
-    }
-
-    if(k1 >= i+1) {
-      A[j][k1] -= A[j][i] * A[i][k1];
-    }
-
-//    index++;
-//    i = index / N / N;
-//    k0 = index / N % N;
-//    j = k0;
-//    k1 = index % N;
-//    if(k1 == 0 and k0 == 0) {
-//      maxA = 0.0;
-//      imax = i;
-//    }
-//
-//    if(k1 == 0 and k0>=i) {
-//      if ((absA = fabs(A[k0][i])) > maxA) {
-//        maxA = absA;
-//        imax = k0;
-//      }
-//    }
-//
-//    if(k1 == 0 and k0 == 0 and imax != i) {
-//      //pivoting P
-//      j = P[i];
-//      P[i] = P[imax];
-//      P[imax] = j;
-//
-//      //pivoting rows of A
-//      ptr = A[i];
-//      A[i] = A[imax];
-//      A[imax] = ptr;
-//
-//      //counting pivots starting from N (for determinant)
-//      P[N]++;
-//    }
-//
-//    if(k1 == 0 and j >= i+1) {
-//      A[j][i] /= A[i][i];
-//    }
-//
-//    if(k1 >= i+1) {
-//      A[j][k1] -= A[j][i] * A[i][k1];
-//    }
-//
-//    index++;
-//    i = index / N / N;
-//    k0 = index / N % N;
-//    j = k0;
-//    k1 = index % N;
-//    if(k1 == 0 and k0 == 0) {
-//      maxA = 0.0;
-//      imax = i;
-//    }
-//
-//    if(k1 == 0 and k0>=i) {
-//      if ((absA = fabs(A[k0][i])) > maxA) {
-//        maxA = absA;
-//        imax = k0;
-//      }
-//    }
-//
-//    if(k1 == 0 and k0 == 0 and imax != i) {
-//      //pivoting P
-//      j = P[i];
-//      P[i] = P[imax];
-//      P[imax] = j;
-//
-//      //pivoting rows of A
-//      ptr = A[i];
-//      A[i] = A[imax];
-//      A[imax] = ptr;
-//
-//      //counting pivots starting from N (for determinant)
-//      P[N]++;
-//    }
-//
-//    if(k1 == 0 and j >= i+1) {
-//      A[j][i] /= A[i][i];
-//    }
-//
-//    if(k1 >= i+1) {
-//      A[j][k1] -= A[j][i] * A[i][k1];
-//    }
-//
-//    index++;
-//    i = index / N / N;
-//    k0 = index / N % N;
-//    j = k0;
-//    k1 = index % N;
-//    if(k1 == 0 and k0 == 0) {
-//      maxA = 0.0;
-//      imax = i;
-//    }
-//
-//    if(k1 == 0 and k0>=i) {
-//      if ((absA = fabs(A[k0][i])) > maxA) {
-//        maxA = absA;
-//        imax = k0;
-//      }
-//    }
-//
-//    if(k1 == 0 and k0 == 0 and imax != i) {
-//      //pivoting P
-//      j = P[i];
-//      P[i] = P[imax];
-//      P[imax] = j;
-//
-//      //pivoting rows of A
-//      ptr = A[i];
-//      A[i] = A[imax];
-//      A[imax] = ptr;
-//
-//      //counting pivots starting from N (for determinant)
-//      P[N]++;
-//    }
-//
-//    if(k1 == 0 and j >= i+1) {
-//      A[j][i] /= A[i][i];
-//    }
-//
-//    if(k1 >= i+1) {
-//      A[j][k1] -= A[j][i] * A[i][k1];
-//    }
-
-  }
-
-/*
   int i, j, k, imax;
   double maxA, *ptr, absA;
 
@@ -245,7 +78,6 @@ int kernel(double **A, int N, double Tol, int *P) {
         A[j][k] -= A[j][i] * A[i][k];
     }
   }
-*/
   return 1;
 
 }
